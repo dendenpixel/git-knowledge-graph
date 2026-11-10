@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<p>TTL directory: <code>{{ stats.ttl_dir }}</code></p>
+<ul>
+  <li>Base triples: <b>{{ stats.base_triples }}</b></li>
+  <li>Inferred triples: <b>{{ stats.inferred_triples }}</b></li>
+</ul>
+<p>This app loads all <code>.ttl</code> files under the directory, then applies OWL-RL to show inferred classes and relations.</p>
+{% endblock %}

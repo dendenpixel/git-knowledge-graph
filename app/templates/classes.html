@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Classes (with instance counts, after inference)</h2>
+<table>
+  <thead><tr><th># instances</th><th>Class IRI</th></tr></thead>
+  <tbody>
+  {% for n, c in rows %}
+    <tr>
+      <td style="text-align:right">{{ n }}</td>
+      <td><a href="/instances?class={{ c | urlencode }}">{{ c }}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

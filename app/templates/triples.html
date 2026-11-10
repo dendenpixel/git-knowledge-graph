@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Triples (after inference)</h2>
+<p>Showing {{ offset + 1 }}–{{ [offset + rows|length, total]|min }} of {{ total }}.</p>
+
+<form method="get" style="margin:8px 0;">
+  Limit: <input type="number" name="limit" value="{{ limit }}" min="1" max="1000">
+  <input type="hidden" name="offset" value="{{ offset }}">
+  <button type="submit">Apply</button>
+</form>
+
+<table>
+  <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
+  <tbody>
+  {% for s,p,o in rows %}
+    <tr><td><code>{{ s }}</code></td><td><code>{{ p }}</code></td><td><code>{{ o }}</code></td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p style="margin-top:10px;">
+  {% if prev_offset is not none %}
+    <a href="/triples?offset={{ prev_offset }}&limit={{ limit }}">&laquo; Prev</a>
+  {% endif %}
+  {% if next_offset is not none %}
+    {% if prev_offset is not none %} | {% endif %}
+    <a href="/triples?offset={{ next_offset }}&limit={{ limit }}">Next &raquo;</a>
+  {% endif %}
+</p>
+{% endblock %}

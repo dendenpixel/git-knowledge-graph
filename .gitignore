@@ -1,0 +1,18 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Generated dumps (regenerate with the scripts, see README)
+ontology/project.ttl
+ontology/combined.ttl
+ontology/project_inferred.ttl
+ontology/boom.ttl
+ontology/Flask/FlaskJsons.ttl
+ontology/Flask/FlaskInferred.ttl
+ontology/Flask/FlaskCombined.ttl
+ontology/Flask/notNeededFlask/
+data/*.json
+data/*/*.json

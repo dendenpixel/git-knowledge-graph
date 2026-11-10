@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>SHACL Validation</h2>
+
+{% if not shapes_exists %}
+  <p style="color:#b00">No <code>shapes.ttl</code> found in your ontology folder. Add one to enable validation.</p>
+{% endif %}
+
+<p>Conforms: <b>{{ "True ✅" if conforms else "False ❌" }}</b></p>
+
+{% if violations and violations|length > 0 %}
+  <h3>Violations ({{ violations|length }})</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Severity</th>
+        <th>Focus Node</th>
+        <th>Path</th>
+        <th>Message</th>
+        <th>Source Shape</th>
+        <th>Constraint</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in violations %}
+        <tr>
+          <td><code>{{ v.severity }}</code></td>
+          <td><code>{{ v.focusNode }}</code></td>
+          <td><code>{{ v.resultPath }}</code></td>
+          <td>{{ v.message }}</td>
+          <td><code>{{ v.sourceShape }}</code></td>
+          <td><code>{{ v.constraintComp }}</code></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No violations found.</p>
+{% endif %}
+
+<h3>Raw Report</h3>
+<pre style="white-space: pre-wrap">{{ report }}</pre>
+{% endblock %}

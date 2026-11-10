@@ -1,0 +1,159 @@
+@prefix git: <http://example.org/git#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/git#repo/1048947080> a git:Repository ;
+    git:repoDescription "A simple, open source screen recorder. Drag-select and Record." ;
+    git:repoForks 0 ;
+    git:repoLanguage "Python" ;
+    git:repoName "cmdr2/screenrecorder" ;
+    git:repoStars 0 ;
+    git:repoUrl <https://github.com/cmdr2/screenrecorder> .
+
+<http://example.org/git#repo/1050347935> a git:Repository ;
+    git:repoDescription "A simple wizard for generating GitHub Actions workflows for common deployment tasks" ;
+    git:repoForks 0 ;
+    git:repoLanguage "Python" ;
+    git:repoName "cmdr2/github-actions-wizard" ;
+    git:repoStars 0 ;
+    git:repoUrl <https://github.com/cmdr2/github-actions-wizard> .
+
+<http://example.org/git#repo/153395831> a git:Repository ;
+    git:repoDescription "Repo for the P2S Rugbyworks project" ;
+    git:repoForks 0 ;
+    git:repoLanguage "Vue" ;
+    git:repoName "codersforcauses/p2s-frontend" ;
+    git:repoStars 8 ;
+    git:repoUrl <https://github.com/codersforcauses/p2s-frontend> .
+
+<http://example.org/git#repo/173560566> a git:Repository ;
+    git:repoDescription "Website 3.0 for codersforcauses.org" ;
+    git:repoForks 5 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/website" ;
+    git:repoStars 11 ;
+    git:repoUrl <https://github.com/codersforcauses/website> .
+
+<http://example.org/git#repo/193360390> a git:Repository ;
+    git:repoDescription "A forum for homelessness research." ;
+    git:repoForks 1 ;
+    git:repoLanguage "JavaScript" ;
+    git:repoName "codersforcauses/home2health" ;
+    git:repoStars 4 ;
+    git:repoUrl <https://github.com/codersforcauses/home2health> .
+
+<http://example.org/git#repo/193525011> a git:Repository ;
+    git:repoDescription "A PWA for the FoGUWA community to display an interactive map when the members go on tours" ;
+    git:repoForks 3 ;
+    git:repoLanguage "Vue" ;
+    git:repoName "codersforcauses/FoGUWA" ;
+    git:repoStars 9 ;
+    git:repoUrl <https://github.com/codersforcauses/FoGUWA> .
+
+<http://example.org/git#repo/228130665> a git:Repository ;
+    git:repoForks 0 ;
+    git:repoLanguage "JavaScript" ;
+    git:repoName "codersforcauses/teach-learn-grow" ;
+    git:repoStars 1 ;
+    git:repoUrl <https://github.com/codersforcauses/teach-learn-grow> .
+
+<http://example.org/git#repo/274683786> a git:Repository ;
+    git:repoDescription "Generates social cards for urls" ;
+    git:repoForks 0 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/og-social-cards" ;
+    git:repoStars 4 ;
+    git:repoUrl <https://github.com/codersforcauses/og-social-cards> .
+
+<http://example.org/git#repo/314747729> a git:Repository ;
+    git:repoDescription "A web app to engage students in the classroom with interactive activities about nutrition" ;
+    git:repoForks 3 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/foodbank" ;
+    git:repoStars 16 ;
+    git:repoUrl <https://github.com/codersforcauses/foodbank> .
+
+<http://example.org/git#repo/502524362> a git:Repository ;
+    git:repoDescription "Documentation: https://elucidate-project-documentation.readthedocs.io/en/latest/" ;
+    git:repoForks 1 ;
+    git:repoLanguage "Python" ;
+    git:repoName "codersforcauses/elucidate" ;
+    git:repoStars 9 ;
+    git:repoUrl <https://github.com/codersforcauses/elucidate> .
+
+<http://example.org/git#repo/502530743> a git:Repository ;
+    git:repoDescription "A progressive web app to help volunteers track their volunteering activities, register vet concerns and log incident reports. Documentations: https://codersforcauses.github.io/poops" ;
+    git:repoForks 5 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/poops" ;
+    git:repoStars 23 ;
+    git:repoUrl <https://github.com/codersforcauses/poops> .
+
+<http://example.org/git#repo/564564001> a git:Repository ;
+    git:repoDescription "A web-application to assist the Western Australian Debating League with their seasonal organisational needs. Documentation: (https://codersforcauses.github.io/wadl/)" ;
+    git:repoForks 5 ;
+    git:repoLanguage "Vue" ;
+    git:repoName "codersforcauses/wadl" ;
+    git:repoStars 8 ;
+    git:repoUrl <https://github.com/codersforcauses/wadl> .
+
+<http://example.org/git#repo/652930238> a git:Repository ;
+    git:repoDescription "A PWA which will enable participants to track their kilometers while engaging in a walking/running/wheeling challenge. " ;
+    git:repoForks 3 ;
+    git:repoLanguage "Vue" ;
+    git:repoName "codersforcauses/csf" ;
+    git:repoStars 10 ;
+    git:repoUrl <https://github.com/codersforcauses/csf> .
+
+<http://example.org/git#repo/654185178> a git:Repository ;
+    git:repoForks 3 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/repair-lab" ;
+    git:repoStars 8 ;
+    git:repoUrl <https://github.com/codersforcauses/repair-lab> .
+
+<http://example.org/git#repo/721536293> a git:Repository ;
+    git:repoForks 5 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/starick" ;
+    git:repoStars 14 ;
+    git:repoUrl <https://github.com/codersforcauses/starick> .
+
+<http://example.org/git#repo/79648391> a git:Repository ;
+    git:repoDescription "CodersForCauses project for Guild Volunteering UWA - An alternative to physical logbooks" ;
+    git:repoForks 0 ;
+    git:repoLanguage "JavaScript" ;
+    git:repoName "codersforcauses/guild-volunteering" ;
+    git:repoStars 0 ;
+    git:repoUrl <https://github.com/codersforcauses/guild-volunteering> .
+
+<http://example.org/git#repo/817912004> a git:Repository ;
+    git:repoForks 4 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/penni" ;
+    git:repoStars 9 ;
+    git:repoUrl <https://github.com/codersforcauses/penni> .
+
+<http://example.org/git#repo/889002705> a git:Repository ;
+    git:repoDescription "A web-app quiz platform for WAJO" ;
+    git:repoForks 2 ;
+    git:repoLanguage "TypeScript" ;
+    git:repoName "codersforcauses/wajo" ;
+    git:repoStars 3 ;
+    git:repoUrl <https://github.com/codersforcauses/wajo> .
+
+<http://example.org/git#repo/897780220> a git:Repository ;
+    git:repoDescription "Code and notes from things being studied" ;
+    git:repoForks 0 ;
+    git:repoLanguage "C++" ;
+    git:repoName "cmdr2/study" ;
+    git:repoStars 0 ;
+    git:repoUrl <https://github.com/cmdr2/study> .
+
+<http://example.org/git#repo/937938326> a git:Repository ;
+    git:repoDescription "Tensor library for machine learning" ;
+    git:repoForks 0 ;
+    git:repoLanguage "C++" ;
+    git:repoName "cmdr2/ggml" ;
+    git:repoStars 0 ;
+    git:repoUrl <https://github.com/cmdr2/ggml> .
+

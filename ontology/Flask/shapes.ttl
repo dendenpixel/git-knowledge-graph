@@ -1,0 +1,37 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix git:  <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#> .
+@prefix shp:  <http://example.org/shapes#> .
+ 
+git:repoMinBranchnFiles a sh:NodeShape;
+    sh:targetClass git:Repository;
+    sh:property [sh:path git:hasBranch; sh:minCount 1; sh:message "Repository must contain the minimum of one branch."];
+    sh:property [sh:path git:hasFile;   sh:minCount 1; sh:message "Repository must at least contain a singular file."].
+
+git:branchNamenIniCommit a sh:NodeShape;
+    sh:targetClass git:Branch;
+    sh:property [sh:path git:branchName; sh:datatype xsd:string; sh:message "Branch must exactly have one name, that is of a string."];
+    sh:property [sh:path git:branchName; sh:minCount 1; sh:maxCount 1; sh:message "Branch must have exactly one name, no more, no less."];
+    sh:property [sh:path git:initialCommit; sh:class git:InitialCommit; sh:minCount 1; sh:maxCount 1; sh:message "InitialCommit must only have exactly one InitialCommit."];
+    sh:property [sh:path git:derivedFrom; sh:class git:Repository; sh:minCount 1; sh:maxCount 1; sh:message "There must only be one repository derivedFrom Branch."].
+
+#user, timestamp, branch, list updated file, message.
+git:commitRequirements a sh:NodeShape;
+    sh:targetClass git:Commit;
+    sh:property [sh:path git:madeBy; sh:class git:User; sh:minCount 1; sh:maxCount 1; sh:message "There must be exactly 1 author for the commit."];
+    sh:property [sh:path git:commitDate; sh:datatype xsd:dateTime; sh:message "commitDate must be in dateTime format."];
+    sh:property [sh:path git:commitDate; sh:minCount 1; sh:maxCount 1; sh:message "There must be exactly 1 commitDate."];
+    sh:property [sh:path git:belongsTo; sh:class git:Branch; sh:minCount 1; sh:maxCount 1; sh:message "There must be a branch."];
+    sh:property [sh:path git:updatesFile; sh:class git:File; sh:minCount 1; sh:message "The commit must have at the minimum of 1 file."];
+    sh:property [sh:path git:sha; sh:datatype xsd:string;sh:message "sha must be an xsd:string."];
+    sh:property [sh:path git:sha; sh:minCount 1; sh:maxCount 1; sh:message "Commit must have exactly one sha."].
+
+# Each commit >= 1 parent, or if initial, 0; if >1, it's a merge.
+git:commitParentBehaviour a sh:NodeShape;
+    sh:targetClass git:Commit;
+    sh:xone (
+        [sh:property [sh:path git:parentCommit; sh:maxCount 0]]
+        [sh:property [sh:path git:parentCommit; sh:minCount 1; sh:maxCount 1]]
+        [sh:property [sh:path git:parentCommit; sh:minCount 2]]
+    );
+    sh:message "Commit must be either Initial (0 parents), Normal (1 parent), or Merge (≥2 parents), only exactly one can be true.".

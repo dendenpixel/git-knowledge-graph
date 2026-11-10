@@ -1,0 +1,20 @@
+#Flag all commits messages containing the text "security" or "vulnerability" that have been occured or merged into a given branch;
+PREFIX git: <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#>
+
+SELECT DISTINCT ?branch ?tip ?commit ?sha ?message ?date
+WHERE {
+    VALUES ?branch {<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/75821432/main>}
+
+  ?branch git:hasCommit ?tip.
+  ?tip (git:parentCommit)* ?commit.
+  ?commit git:commitMessage ?message.
+  FILTER(
+    CONTAINS(LCASE(?message), "security") ||
+    CONTAINS(LCASE(?message), "vulnerability")
+    # || CONTAINS(LCASE(?message), "vulnerabilities") #, there is one that is ties, but since not asked I've just included if wanted to test that, since I found that interesting to me.
+  )
+
+  OPTIONAL { ?commit git:sha ?sha}
+  OPTIONAL { ?commit git:commitDate ?date}
+}
+ORDER BY DESC(?date)

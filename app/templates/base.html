@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>{{ title or "App" }}</title>
+<style>
+  body{font-family:system-ui,Arial,sans-serif;margin:24px;line-height:1.5}
+  nav a{margin-right:12px}
+  table{border-collapse:collapse} th,td{border:1px solid #ddd;padding:6px 10px}
+  code{background:#f6f8fa;padding:2px 4px;border-radius:4px}
+</style>
+<header>
+  <h1>{{ title }}</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/classes">Classes</a>
+    <a href="/triples">Triples</a>
+    <a href="/sparql">SPARQL</a>
+    <a href="/validate">Validate</a>
+  </nav>
+  <hr>
+</header>
+{% block content %}{% endblock %}

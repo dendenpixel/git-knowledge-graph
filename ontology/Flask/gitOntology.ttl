@@ -1,0 +1,395 @@
+@prefix : <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project/> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#authors
+:authors rdf:type owl:ObjectProperty ;
+         owl:inverseOf :madeBy ;
+         rdfs:domain :User ;
+         rdfs:range :Commit .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#belongsTo
+:belongsTo rdf:type owl:ObjectProperty ;
+           owl:inverseOf :hasCommit ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Commit ;
+           rdfs:range :Branch .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#derivedFrom
+:derivedFrom rdf:type owl:ObjectProperty ;
+             owl:inverseOf :hasBranch ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Branch ;
+             rdfs:range :Repository .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#hasBranch
+:hasBranch rdf:type owl:ObjectProperty ;
+           rdfs:domain :Repository ;
+           rdfs:range :Branch .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#hasCommit
+:hasCommit rdf:type owl:ObjectProperty ;
+           rdfs:domain :Branch ;
+           rdfs:range :Commit .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#hasFile
+:hasFile rdf:type owl:ObjectProperty ;
+         rdfs:domain :Repository ;
+         rdfs:range :File ;
+         owl:propertyChainAxiom ( :hasBranch
+                                  :hasCommit
+                                  :updatesFile
+                                ) .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#initialCommit
+:initialCommit rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasCommit ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Branch ;
+               rdfs:range :Commit .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#madeBy
+:madeBy rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain :Commit ;
+        rdfs:range :User .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#parentCommit
+:parentCommit rdf:type owl:ObjectProperty ;
+              rdfs:domain :Commit ;
+              rdfs:range :Commit .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#updatesFile
+:updatesFile rdf:type owl:ObjectProperty ;
+             owl:inverseOf :wasChanged ;
+             rdfs:domain :Commit ;
+             rdfs:range :File .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#wasChanged
+:wasChanged rdf:type owl:ObjectProperty ;
+            rdfs:domain :File ;
+            rdfs:range :Commit .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branchName
+:branchName rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :branchProperty ;
+            rdfs:domain :Branch ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branchProperty
+:branchProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commitDate
+:commitDate rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :commitProperty ;
+            rdfs:domain :Commit ;
+            rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commitMessage
+:commitMessage rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :commitProperty ;
+               rdfs:domain :Commit ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commitProperty
+:commitProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileAdditions
+:fileAdditions rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :fileProperty ;
+               rdfs:domain :File ;
+               rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileChanges
+:fileChanges rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :fileProperty ;
+             rdfs:domain :File ;
+             rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileDeletions
+:fileDeletions rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :fileProperty ;
+               rdfs:domain :File ;
+               rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileName
+:fileName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :fileProperty ;
+          rdfs:domain :File ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileProperty
+:fileProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#fileStatus
+:fileStatus rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :fileProperty ;
+            rdfs:domain :File ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#isDefault
+:isDefault rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :branchProperty ;
+           rdfs:domain :Branch ;
+           rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoDescription
+:repoDescription rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :repoProperty ;
+                 rdfs:domain :Repository ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoForks
+:repoForks rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :repoProperty ;
+           rdfs:domain :Repository ;
+           rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoId
+:repoId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :repoProperty ;
+        rdfs:domain :Repository ;
+        rdfs:range xsd:long .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoLanguage
+:repoLanguage rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :repoProperty ;
+              rdfs:domain :Repository ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoName
+:repoName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :repoProperty ;
+          rdfs:domain :Repository ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoProperty
+:repoProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoStars
+:repoStars rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :repoProperty ;
+           rdfs:domain :Repository ;
+           rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repoUrl
+:repoUrl rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :repoProperty ;
+         rdfs:domain :Repository ;
+         rdfs:range xsd:anyURI .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#sha
+:sha rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :commitProperty ;
+     rdfs:domain :Commit ;
+     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#userId
+:userId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :userProperty ;
+        rdfs:domain :User ;
+        rdfs:range xsd:long .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#userLogin
+:userLogin rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :userProperty ;
+           rdfs:domain :User ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#userProperty
+:userProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#userUrl
+:userUrl rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :userProperty ;
+         rdfs:domain :User ;
+         rdfs:range xsd:anyURI .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#Branch
+:Branch rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :derivedFrom ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Repository
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :initialCommit ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :InitialCommit
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :branchName ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#Commit
+:Commit rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :updatesFile ;
+                          owl:someValuesFrom :File
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :belongsTo ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Branch
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :madeBy ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :User
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :commitDate ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:dateTime
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :commitMessage ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :sha ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#File
+:File rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#InitialCommit
+:InitialCommit rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Commit
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :parentCommit ;
+                                                            owl:maxCardinality "0"^^xsd:nonNegativeInteger
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#MergeCommit
+:MergeCommit rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Commit
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :parentCommit ;
+                                                          owl:minCardinality "2"^^xsd:nonNegativeInteger
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#Repository
+:Repository rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFile ;
+                              owl:someValuesFrom :File
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasBranch ;
+                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Branch
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :repoId ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:long
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :repoName ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:string
+                            ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#User
+:User rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#notInitialCommit
+:notInitialCommit rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Commit
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :parentCommit ;
+                                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Branch
+                :Commit
+                :File
+                :Repository
+                :User
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

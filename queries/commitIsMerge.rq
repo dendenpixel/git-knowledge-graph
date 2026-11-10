@@ -1,0 +1,11 @@
+#Find all commits that are merges;
+PREFIX git: <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#>
+
+SELECT ?commit (COUNT(DISTINCT ?parent) AS ?parentCount)
+WHERE {
+  ?commit a git:Commit ; git:parentCommit ?parent .
+}
+GROUP BY ?commit
+HAVING (COUNT(DISTINCT ?parent) >= 2)
+ORDER BY DESC(?parentCount)
+LIMIT 20 #You can remove the limit if you want to see all of them, I placed it since my repo takes some big ones, and alot of merges.

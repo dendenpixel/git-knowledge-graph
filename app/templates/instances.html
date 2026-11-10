@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Instances of</h2>
+<p><code>{{ cls }}</code></p>
+<p>Showing up to {{ limit }} ({{ count }} total).</p>
+<ul>
+  {% for s in items %}
+    <li><code>{{ s }}</code></li>
+  {% endfor %}
+</ul>
+{% endblock %}

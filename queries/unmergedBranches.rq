@@ -1,0 +1,16 @@
+#Find all repositories with more than 5 unmerged branches;
+PREFIX git: <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#>
+
+SELECT ?repo (COUNT(DISTINCT ?branch) AS ?unmergedCounter)
+WHERE {
+  ?repo a git:Repository; git:hasBranch ?main.
+  ?main git:isDefault true.
+  ?repo git:hasBranch ?branch.
+  FILTER (?branch != ?main)
+  ?branch git:hasCommit ?cBranch.
+  ?main git:hasCommit ?cMain.
+  FILTER NOT EXISTS{ ?cMain git:parentCommit+ ?cBranch}
+}
+GROUP BY ?repo
+HAVING (COUNT(DISTINCT ?branch) > 5)
+ORDER BY DESC(?unmergedCounter)

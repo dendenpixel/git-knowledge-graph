@@ -1,0 +1,69 @@
+# SYNTHETIC SAMPLE DATA. Hand-written, not pulled from GitHub.
+# Two made-up users, one repo, one branch, three commits (one of them a merge)
+# and two files, shaped like the output of scripts/JsontottlConverter.py so the
+# Flask app boots and pySHACL has something to validate. Every name, id, sha
+# and URL below is fake. Regenerate real data with scripts/git_data.py (see README).
+
+@prefix git: <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#user/1001> a git:User ;
+    git:userId 1001 ;
+    git:userLogin "sample-alice" ;
+    git:userUrl <https://example.org/users/sample-alice> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#user/1002> a git:User ;
+    git:userId 1002 ;
+    git:userLogin "sample-bob" ;
+    git:userUrl <https://example.org/users/sample-bob> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repo/9001> a git:Repository ;
+    git:repoName "sample/demo-repo" ;
+    git:repoUrl <https://example.org/sample/demo-repo> ;
+    git:hasBranch <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/9001/main> ;
+    git:hasFile <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/README.md>,
+        <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/app.py> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/9001/main> a git:Branch ;
+    git:branchName "main" ;
+    git:derivedFrom <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repo/9001> ;
+    git:isDefault true ;
+    git:initialCommit <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000001> ;
+    git:hasCommit <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000001>,
+        <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000002>,
+        <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000003> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000001> a git:Commit, git:InitialCommit ;
+    git:sha "aaaa000000000000000000000000000000000001" ;
+    git:commitMessage "Initial commit" ;
+    git:commitDate "2025-01-01T09:00:00+00:00"^^xsd:dateTime ;
+    git:madeBy <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#user/1001> ;
+    git:belongsTo <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/9001/main> ;
+    git:updatesFile <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/README.md> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000002> a git:Commit ;
+    git:sha "aaaa000000000000000000000000000000000002" ;
+    git:commitMessage "Add app.py and fix a security warning" ;
+    git:commitDate "2025-01-02T10:30:00+00:00"^^xsd:dateTime ;
+    git:madeBy <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#user/1002> ;
+    git:belongsTo <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/9001/main> ;
+    git:parentCommit <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000001> ;
+    git:updatesFile <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/app.py> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000003> a git:Commit ;
+    git:sha "aaaa000000000000000000000000000000000003" ;
+    git:commitMessage "Merge feature work into main" ;
+    git:commitDate "2025-01-03T14:15:00+00:00"^^xsd:dateTime ;
+    git:madeBy <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#user/1001> ;
+    git:belongsTo <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#branch/9001/main> ;
+    git:parentCommit <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000002>,
+        <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#commit/aaaa000000000000000000000000000000000001> ;
+    git:updatesFile <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/app.py> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/README.md> a git:File ;
+    git:fileName "README.md" ;
+    git:belongsTo <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repo/9001> .
+
+<http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#file/9001/app.py> a git:File ;
+    git:fileName "app.py" ;
+    git:belongsTo <http://www.semanticweb.org/user/ontologies/2025/9/gitOntology_Project#repo/9001> .

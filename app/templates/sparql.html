@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>SPARQL</h2>
+
+<form method="post">
+  <textarea name="q" rows="12" style="width:100%;">{{ q }}</textarea><br>
+  Limit: <input type="number" name="limit" value="{{ limit }}" min="1" max="5000">
+  <button type="submit">Run</button>
+</form>
+
+<p>Built-in prefixes:</p>
+<pre>{{ prefixes }}</pre>
+
+{% if examples and examples|length > 0 %}
+  <p>Load example (not all work, meant for bigger repos):</p>
+  <ul>
+  {% for f in examples %}
+    <li><a href="/sparql?load={{ f | urlencode }}">{{ f }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if error %}
+  <p style="color:#b00;"><b>Error:</b> {{ error }}</p>
+{% endif %}
+
+{% if headers %}
+  <h3>Results (showing up to {{ limit }} rows)</h3>
+  <table>
+    <thead><tr>{% for h in headers %}<th>{{ h }}</th>{% endfor %}</tr></thead>
+    <tbody>
+      {% for row in rows %}
+        <tr>{% for cell in row %}<td><code>{{ cell }}</code></td>{% endfor %}</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+{% endblock %}
